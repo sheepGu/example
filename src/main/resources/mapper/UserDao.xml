@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <mapper namespace="com.exam.dao.UserDao">
+    <insert id="userAdd">
+      insert ignore into USER (username,password,create_userId,status) values (#{user.userName},#{user.passWord},#{user.createUserId},#{user.status})
+
+    </insert>
+
+    <select id="queryById" resultType="User">
+      SELECT *
+      FROM USER
+      WHERE
+      userid=#{userId}
+    </select>
+
+    <select id="queryAll" resultType="User">
+      SELECT *
+      FROM USER
+      order by create_time DESC
+      limit #{offset},#{limit}
+    </select>
+
+    <select id="queryByUserName" resultType="User">
+        select *
+        from USER
+        where userName=#{userName}
+
+    </select>
+</mapper>
